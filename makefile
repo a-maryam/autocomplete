@@ -2,7 +2,7 @@ CXX      := g++
 CXXFLAGS := -Wall -std=c++17 -Iinclude 
 TARGET   := autocomplete
 
-SRCDIR := src  
+SRCDIR := src
 OBJDIR := obj
 
 # Get all source files
