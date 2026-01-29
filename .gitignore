@@ -1,0 +1,51 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+*.dll
+
+# CMake Build Artifacts
+[Cc]MakeFiles/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+*.cmake
+*.tcl
+
+# Qt Creator
+*.user
+*.pro.user
+*.[oa]
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+# ... more Qt specific patterns can be found in the [GitHub Qt gitignore](
