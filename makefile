@@ -1,29 +1,33 @@
 CXX      := g++
-CXXFLAGS := -Wall -std=c++17 -Iinclude 
+CXXFLAGS := -Wall -std=c++17 -Iinclude
 TARGET   := autocomplete
 
 SRCDIR := src
 OBJDIR := obj
+BINDIR := bin
 
-# Get all source files
 SOURCES := $(wildcard $(SRCDIR)/*.cpp)
+OBJS    := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
+TARGET_PATH := $(BINDIR)/$(TARGET)
 
-# Transform src/*.cpp paths to obj/*.o paths
-OBJS := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
+all: $(TARGET_PATH)
 
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
+# only rebuild binary if objects change
+$(TARGET_PATH): $(OBJS) | $(BINDIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Rule to compile objects from the source dir into the object dir
+# only rebuild object if source changes
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Ensure directories exist
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJDIR) $(BINDIR)
 
 .PHONY: all clean

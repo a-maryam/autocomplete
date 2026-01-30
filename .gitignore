@@ -49,3 +49,5 @@ moc_*.cpp
 ui_*.h
 qrc_*.cpp
 # ... more Qt specific patterns can be found in the [GitHub Qt gitignore](
+
+bin
