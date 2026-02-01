@@ -1,26 +1,24 @@
 // trie.cpp
-// is it better to use char[] or vector for the children?
-// do I want to save memory or have fast access
-// with my computer fan whirring louder than niagara falls, I should probably try to reduce memory
-// caching will also reduce runtime
-#include <vector>
+#include "../include/trie.h"
 
-class trie_node {
-public:
-    char data; // going to have this for debugging but not necessary
-    std::vector<trie_node*> children;
-    bool terminal;
-
-    trie_node(): terminal(false) {
-        children.assign(26, nullptr);
+trie_node::trie_node() : data(0), terminal(false) {
+    for(int i = 0; i < 26; i++) {
+        children[i] = nullptr;
     }
-};
+}
 
-class trie {
-    trie_node* root; // root holds no data
-public:
-    trie() {
-        root = new trie_node();
-    }
-};
+trie::trie() {
+    root = new trie_node();
+}
 
+void trie::insert(const std::string& word) {
+
+}
+
+void trie::delete_word(const std::string& word) {
+
+}
+
+bool trie::prefix_search(const std::string& word) {
+
+}
