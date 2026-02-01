@@ -18,19 +18,20 @@ void trie::insert(const std::string& word) {
     //if(search(word)) return; // word already exists
     trie_node* temp = root;
     unsigned int i = 0; 
-    char c = word[i++];
 
     // should get us to a point where we must insert.
-    while(i < word.length() && temp->children[c - 'a'] !=nullptr) {
-        temp = temp->children[c - 'a'];
-        c = word[i++];
+    while(i < word.length() && temp->children[word[i] - 'a'] !=nullptr) {
+        temp = temp->children[word[i] - 'a'];
+        i++;
     }
 
+    char insert;
+
     for(unsigned int j = i; j < word.length(); j++) {
-        temp->children[c - 'a'] = new trie_node();
-        temp = temp->children[c - 'a'];
-        temp->data = c;
-        c = word[j];
+        insert = word[j];
+        temp->children[insert - 'a'] = new trie_node();
+        temp = temp->children[insert - 'a'];
+        temp->data = insert;
     }
     temp->terminal = true;
 }

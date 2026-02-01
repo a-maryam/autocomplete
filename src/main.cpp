@@ -21,9 +21,7 @@ std::vector<std::string> read_file(std::string fname) {
     else {
         std::cout << "Couldn't open file" << std::endl;
     }
-    /*for(std::string s : tokens) {
-        std::cout << s << '\n';
-    }*/
+    
     return tokens; 
 }
 
