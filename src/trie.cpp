@@ -1,5 +1,6 @@
 // trie.cpp
 #include "../include/trie.h"
+#include <iostream>
 
 trie_node::trie_node() : data(0), terminal(false) {
     for(int i = 0; i < 26; i++) {
@@ -16,7 +17,7 @@ trie::trie() {
 void trie::insert(const std::string& word) {
     //if(search(word)) return; // word already exists
     trie_node* temp = root;
-    int i = 0; 
+    unsigned int i = 0; 
     char c = word[i++];
 
     // should get us to a point where we must insert.
@@ -25,23 +26,44 @@ void trie::insert(const std::string& word) {
         c = word[i++];
     }
 
-    for(int j = i; j < word.length(); j++) {
+    for(unsigned int j = i; j < word.length(); j++) {
         temp->children[c - 'a'] = new trie_node();
         temp = temp->children[c - 'a'];
         temp->data = c;
-        c = word[j++];
+        c = word[j];
     }
     temp->terminal = true;
 }
 
-void trie::delete_word(const std::string& word) {
+// probably don't run on huge input files due to the depth of the call stack. 
+void trie::print_trie(trie_node* curr) {
+    if(!curr) curr = root;
+    for(int i = 0; i < 26; i++) {
+        if(curr->children[i] != nullptr) {
+            std::cout << curr->children[i]->data;
+            print_trie(curr->children[i]);
+        }
+    }
+}
 
+void trie::delete_word(const std::string& word) {
+    return;
 }
 
 bool trie::search(const std::string&) {
-
+    return false;
 }
 
 bool trie::prefix_search(const std::string& word) {
+    return false;
+}
 
+void trie::destroy_trie(trie_node* curr) {
+    if(!curr) curr = root; // probably redo conditions for consistency
+    for(int i = 0 ; i < 26; i++) {
+        if(curr->children[i]!=nullptr) {
+            destroy_trie(curr->children[i]);
+        }
+    }
+    delete(curr);
 }

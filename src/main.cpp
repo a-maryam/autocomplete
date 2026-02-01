@@ -2,31 +2,45 @@
 #include <iostream> 
 #include <string>
 #include <fstream>
+#include <vector>
+#include "../include/trie.h"
 
 // file input 
 // TSV for now 
-int read_file(std::string fname) {
-    std::string line;
+std::vector<std::string> read_file(std::string fname) {
+    std::string word;
     std::ifstream input_file(fname);
+    std::vector<std::string> tokens;
 
     if(input_file.is_open()) {
-        while(std::getline(input_file, line)) {
-            std::cout << line << std::endl;
+        while(input_file >> word) { // stream extraction operator
+            tokens.push_back(word);
         }
         input_file.close();
     } 
     else {
         std::cout << "Couldn't open file" << std::endl;
     }
-    return 0; 
+    /*for(std::string s : tokens) {
+        std::cout << s << '\n';
+    }*/
+    return tokens; 
 }
 
 int main(int argc, char* argv[]) {
-    /*if(argc >=1) {
-        std::string f_name(argv[0]);
-        readfile(f_name)
-    }*/
-    read_file("./input_files/google-10000-english.txt");
+    // change for further args
+    // don't know what that looks like with an API, but we shall see
+
+    std::vector<std::string> tokens = read_file("./input_files/small_test.txt");
+    trie* t = new trie();
+    
+    for(std::string s : tokens) {
+        t->insert(s);
+    }
+
+    t->print_trie();
+    t->destroy_trie();
+    delete(t);
     
     return 0;
 }

@@ -19,4 +19,6 @@ public:
     void delete_word(const std::string&);
     bool search(const std::string&);
     bool prefix_search(const std::string&);
+    void print_trie(trie_node* curr = nullptr);
+    void destroy_trie(trie_node* curr = nullptr);
 };
