@@ -2,10 +2,10 @@
 #include <string>
 
 class trie_node {
-    
+    static const int ALPHABET_SIZE = 26;
 public:
     char data;
-    trie_node* children[26]; // going to insert a lot of words so array is best
+    trie_node* children[ALPHABET_SIZE]; // going to insert a lot of words so array is best
     bool terminal;
 
     trie_node();
@@ -19,4 +19,4 @@ public:
     void delete_word(const std::string&);
     bool search(const std::string&);
     bool prefix_search(const std::string&);
-}
+};
