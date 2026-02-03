@@ -36,7 +36,7 @@ void trie::insert(const std::string& word) {
     temp->terminal = true;
 }
 
-// probably don't run on huge input files due to the depth of the call stack. 
+// deep call stack possible
 void trie::print_trie(trie_node* curr) {
     if(!curr) curr = root;
     for(int i = 0; i < 26; i++) {
