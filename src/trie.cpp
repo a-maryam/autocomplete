@@ -48,11 +48,23 @@ void trie::print_trie(trie_node* curr) {
 }
 
 void trie::delete_word(const std::string& word) {
+    // if node has children do not delete
+    // unset terminal 
+    // delete nodes from the bottom up if there are no children
+
     return;
 }
 
-bool trie::search(const std::string&) {
-    return false;
+bool trie::search(const std::string& target) {
+    trie_node* curr = root;
+    
+    for(unsigned int i = 0; i < target.length(); i++) {
+        char c = target[i];
+        if(curr->children[c - 'a'] == nullptr) return false;
+        curr = curr->children[c - 'a'];
+    }
+
+    return curr->terminal;
 }
 
 bool trie::prefix_search(const std::string& word) {

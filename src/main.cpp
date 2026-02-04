@@ -16,8 +16,9 @@ int main(int argc, char* argv[]) {
         t->insert(s);
     }
 
-    t->print_trie();
+    //t->print_trie();
     t->destroy_trie();
+    std::cout << "is 'information' in the tree " << t->search("information") << "\n";
     delete(t);
     
     return 0;
