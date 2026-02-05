@@ -82,26 +82,24 @@ std::vector<std::string> trie::words_with_prefix(const std::string& prefix) {
     return find_all_words(curr, words, prefix);
 }
 
-// have to create new strings. 
 // dfs
 std::vector<std::string> trie::find_all_words(trie_node* root, std::vector<std::string>& words, const std::string& prefix) {
     std::stack<std::pair<trie_node*, std::string>> nodes; 
     nodes.push({root, ""});
     std::string temp;
-    trie_node* curr; 
     std::pair<trie_node*, std::string> p; // have to store path to each node because otherwise it would get lost
     std::string result_word; 
     while(nodes.empty() == false) {
-        p = nodes.top();
+        auto [curr, temp] = nodes.top();
         nodes.pop();
-        curr = p.first;
-        temp = p.second;
-        if(curr!=root) temp = temp + curr->data; // prevents duplication of the last letter in the prefix
         if(curr->terminal) {
             words.push_back(prefix + temp); // original mistake was resetting temp here but it is the path
         }
         for(int i = 0; i < 26; i++) {
-            if(curr->children[i]!=nullptr) nodes.push({curr->children[i], temp});
+            if(curr->children[i]!=nullptr) {
+                char next_char = 'a' + i;
+                nodes.push({curr->children[i], temp + next_char});
+            }
         }
     }
 
