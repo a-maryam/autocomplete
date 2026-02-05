@@ -1,4 +1,7 @@
-# Autocomplete backend
+# Autocomplete backend 
+
+## In-progress
+- Almost done with trie implementation
 
 ## Idea
 - Search/Autocomplete API
@@ -6,4 +9,4 @@
 
 ## Notes for future me 
 - don't have trailing spaces in makefiles 
-- using namespace is bad practice :P -- I guess it makes sense. I think typedef is kinda in the same category but not as univerally frowny.
+- using namespace is bad practice 

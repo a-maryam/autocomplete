@@ -1,6 +1,8 @@
 // trie.cpp
 #include "../include/trie.h"
 #include <iostream>
+#include <vector>
+#include <stack>
 
 trie_node::trie_node() : data(0), terminal(false) {
     for(int i = 0; i < 26; i++) {
@@ -15,7 +17,7 @@ trie::trie() {
 // may need normalization later on
 // currently assuming all lowercase chars.
 void trie::insert(const std::string& word) {
-    //if(search(word)) return; // word already exists
+    if(search(word)) return; // word already exists
     trie_node* temp = root;
     unsigned int i = 0; 
 
@@ -67,8 +69,43 @@ bool trie::search(const std::string& target) {
     return curr->terminal;
 }
 
-bool trie::prefix_search(const std::string& word) {
-    return false;
+std::vector<std::string> trie::words_with_prefix(const std::string& prefix) {
+    std::vector<std::string> words = {};
+    trie_node* curr = root; 
+    // we get down to the prefix and then we follow every path in the children, 
+    // add whatever is terminal...until there are no more branches.
+    for(unsigned int i = 0; i < prefix.length(); i++) {
+        char c = prefix[i];
+        if(curr->children[c - 'a'] == nullptr) return words;
+        curr = curr->children[c - 'a'];
+    }
+    return find_all_words(curr, words, prefix);
+}
+
+// have to create new strings. 
+// dfs
+std::vector<std::string> trie::find_all_words(trie_node* root, std::vector<std::string>& words, const std::string& prefix) {
+    std::stack<std::pair<trie_node*, std::string>> nodes; 
+    nodes.push({root, ""});
+    std::string temp;
+    trie_node* curr; 
+    std::pair<trie_node*, std::string> p; // have to store path to each node because otherwise it would get lost
+    std::string result_word; 
+    while(nodes.empty() == false) {
+        p = nodes.top();
+        nodes.pop();
+        curr = p.first;
+        temp = p.second;
+        if(curr!=root) temp = temp + curr->data; // prevents duplication of the last letter in the prefix
+        if(curr->terminal) {
+            words.push_back(prefix + temp); // original mistake was resetting temp here but it is the path
+        }
+        for(int i = 0; i < 26; i++) {
+            if(curr->children[i]!=nullptr) nodes.push({curr->children[i], temp});
+        }
+    }
+
+    return words;
 }
 
 void trie::destroy_trie(trie_node* curr) {
