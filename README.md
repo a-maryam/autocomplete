@@ -1,7 +1,7 @@
 # Autocomplete backend 
 
 ## In-progress
-- Almost done with trie implementation
+- Wrote trie with insert, delete, search, prefix search
 
 ## Idea
 - Search/Autocomplete API
