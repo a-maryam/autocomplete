@@ -23,4 +23,8 @@ public:
     void print_trie(trie_node* curr = nullptr);
     void destroy_trie(trie_node* curr = nullptr);
     std::vector<std::string> find_all_words(trie_node* root, std::vector<std::string>& words, const std::string& prefix);
+    bool node_has_children(trie_node* t);
+
+private:
+    trie_node* delete_word(trie_node* t, const std::string&, unsigned int); 
 };

@@ -50,11 +50,38 @@ void trie::print_trie(trie_node* curr) {
 }
 
 void trie::delete_word(const std::string& word) {
+    delete_word(root, word, 0);
+}
+
+trie_node* trie::delete_word(trie_node* t, const std::string& word, unsigned int depth) {
     // if node has children do not delete
     // unset terminal 
     // delete nodes from the bottom up if there are no children
+    if(t == nullptr) return NULL; 
+    if(depth == word.length()) {
+        if(t->terminal) t->terminal = false;
+        if(node_has_children(t)==false) {
+            delete(t);
+            return nullptr;
+        }
+    }
 
-    return;
+    int i =  word[depth] - 'a';
+    t->children[i] = delete_word(t->children[i], word, depth + 1);
+
+    if(node_has_children(t)==false && t->terminal == false) {
+        delete(t);
+        return nullptr;
+    }
+
+    return t;
+}
+
+bool trie::node_has_children(trie_node* t) {
+    for(int i = 0; i < 26; i++) {
+        if(t->children[i]!=nullptr) return true;
+    }
+    return false;
 }
 
 bool trie::search(const std::string& target) {
@@ -88,7 +115,7 @@ std::vector<std::string> trie::find_all_words(trie_node* root, std::vector<std::
     nodes.push({root, ""});
     std::string temp;
     std::pair<trie_node*, std::string> p; // have to store path to each node because otherwise it would get lost
-    std::string result_word; 
+    
     while(nodes.empty() == false) {
         auto [curr, temp] = nodes.top();
         nodes.pop();

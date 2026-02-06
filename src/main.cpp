@@ -9,7 +9,7 @@
 int main(int argc, char* argv[]) {
     // change for further args, have to configure api for that eventuality too
 
-    std::vector<std::string> tokens = read_file("./input_files/google-10000-english.txt");
+    std::vector<std::string> tokens = read_file("./input_files/small_test.txt");
     trie* t = new trie();
     
     for(std::string s : tokens) {
@@ -20,8 +20,12 @@ int main(int argc, char* argv[]) {
     for(std::string s : list) {
         std::cout << s + "\n";
     }
+    t->print_trie();
     std::cout << "is 'information' in the tree " << t->search("information") << "\n";
     //t->print_trie();
+    t->delete_word("the");
+    t->print_trie();
+    
     t->destroy_trie();
     
     delete(t);
