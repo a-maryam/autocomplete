@@ -3,9 +3,17 @@ project(autocomplete)
 # Prevent GoogleTest from overriding compiler/linker settings on Windows
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-# Point this to the folder you just saw (the one with CMakeLists.txt)
-add_subdirectory(googletest)
+set(CMAKE_CXX_STANDARD 17)
 
-# Now you can link your test executable
-add_executable(my_tests tests/tests.cpp src/trie.cpp src/reader.cpp)
-target_link_libraries(my_tests GTest::gtest_main)
+include_directories(include)
+set(LOGIC_SOURCES src/trie.cpp src/reader.cpp)
+add_executable(autocomplete src/main.cpp ${LOGIC_SOURCES})
+
+# TEST STUFF
+add_subdirectory(googletest)
+add_executable(run_tests tests/tests.cpp ${LOGIC_SOURCES})
+target_link_libraries(run_tests GTest::gtest_main)
+
+# enable ctest command
+enable_testing()
+add_test(NAME autocomplete COMMAND run_tests)

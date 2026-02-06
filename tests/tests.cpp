@@ -9,7 +9,7 @@
 
 TEST(trie, basic_search) {
     trie* t = new trie();
-    std::vector<std::string> tokens = read_file("./input_files/small_test.txt");
+    std::vector<std::string> tokens = read_file("../input_files/small_test.txt"); // has to be relative to build dir
     for(std::string s : tokens) {
         t->insert(s);
     }
