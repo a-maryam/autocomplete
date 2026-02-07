@@ -1,3 +1,4 @@
+// tests.cpp
 #include <iostream>
 #include "gtest/gtest.h"
 #include "../include/trie.h" // Replace with your actual project header
@@ -7,11 +8,25 @@
 #include <fstream>
 #include <vector>
 
-TEST(trie, basic_search) {
+// UNIT TESTS
+// TRIE FUNCTIONS
+TEST(trie, insert_and_search) {
     trie* t = new trie();
-    std::vector<std::string> tokens = read_file("../input_files/small_test.txt"); // has to be relative to build dir
-    for(std::string s : tokens) {
-        t->insert(s);
-    }
-    ASSERT_TRUE(t->search("quick"));
+    t->insert("cat");
+
+    ASSERT_TRUE(t->search("cat"));
+    ASSERT_FALSE(t->search("ca"));
+    ASSERT_FALSE(t->search("car"));
+}
+
+// INTEGRATION TEST
+// TRIE FUNCTION
+TEST(trie, insert_and_search_many_words) {
+    trie* t = new trie();
+    t->insert("the");
+    t->insert("quick");
+    t->insert("brown");
+    t->insert("fox");
+
+    ASSERT_TRUE(t->search("quick")); 
 }

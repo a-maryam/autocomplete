@@ -10,10 +10,12 @@ set(LOGIC_SOURCES src/trie.cpp src/reader.cpp)
 add_executable(autocomplete src/main.cpp ${LOGIC_SOURCES})
 
 # TEST STUFF
+include(GoogleTest)
 add_subdirectory(googletest)
 add_executable(run_tests tests/tests.cpp ${LOGIC_SOURCES})
 target_link_libraries(run_tests GTest::gtest_main)
 
 # enable ctest command
 enable_testing()
-add_test(NAME autocomplete COMMAND run_tests)
+#add_test(NAME autocomplete COMMAND run_tests)
+gtest_discover_tests(run_tests)
