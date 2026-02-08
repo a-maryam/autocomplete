@@ -87,3 +87,9 @@ TEST(trie, words_with_prefix_basic) {
     ASSERT_TRUE(std::find(words.begin(), words.end(), "catch") != words.end());
     ASSERT_TRUE(std::find(words.begin(), words.end(), "catharsis") != words.end());
 }
+
+// TODO: TEST NODE HAS CHILDREN
+// TODO: TEST TRIE INSTANSTIATION
+// TODO: TEST READ FILE
+// TODO: MORE EDGE CASES
+// TODO: MORE INTEGRATION TESTS
