@@ -54,3 +54,12 @@ bin
 .vscode
 googletest
 build
+.vscode
+*.user
+.vs/
+
+# may need for cli
+publish/
+dist/
+nupkg/
+obj/

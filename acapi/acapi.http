@@ -1,0 +1,6 @@
+@acapi_HostAddress = http://localhost:5296
+
+GET {{acapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
