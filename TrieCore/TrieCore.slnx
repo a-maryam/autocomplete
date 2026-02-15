@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="TrieCore/TrieCore.vcxproj" Id="3191b843-bb25-487d-81bc-aa5fdc605678" />
+</Solution>
