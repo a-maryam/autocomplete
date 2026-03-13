@@ -8,9 +8,12 @@ public:
     char data;
     trie_node* children[ALPHABET_SIZE]; // going to insert a lot of words so array is best
     bool terminal;
+    int frequency = 1; // for ranking
 
     trie_node();
-};
+}; 
+// frequency ranking (freq should only be for words so should it would just remain zero for nonterminals)
+// hashmap with frequency: extra space but clarity 
 
 class trie {
     trie_node* root;
@@ -24,6 +27,8 @@ public:
     void destroy_trie(trie_node* curr = nullptr);
     std::vector<std::string> find_all_words(trie_node* root, std::vector<std::string>& words, const std::string& prefix);
     bool node_has_children(trie_node* t);
+    void increment_frequency(const std::string& word);
+    trie_node* find(const std::string& word);
 
 private:
     trie_node* delete_word(trie_node* t, const std::string&, unsigned int); 

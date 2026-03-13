@@ -112,6 +112,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\TrieCore\TrieCore\TrieCore.vcxproj">
+      <Project>{3191b843-bb25-487d-81bc-aa5fdc605678}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,1 +1,10 @@
-<Solution />
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../acapi/acapi.csproj" />
+  <Project Path="../CppCliWrapper/CppCliWrapper/CppCliWrapper.vcxproj" Id="0d876caf-f540-07bd-d097-e6b0015e5a5e" />
+  <Project Path="../TrieCore/TrieCore/TrieCore.vcxproj" Id="3191b843-bb25-487d-81bc-aa5fdc605678" />
+</Solution>

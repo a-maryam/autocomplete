@@ -38,7 +38,6 @@ void trie::insert(const std::string& word) {
     temp->terminal = true;
 }
 
-// deep call stack possible
 void trie::print_trie(trie_node* curr) {
     if(!curr) curr = root;
     for(int i = 0; i < 26; i++) {
@@ -84,6 +83,7 @@ bool trie::node_has_children(trie_node* t) {
     return false;
 }
 
+// edit to use find
 bool trie::search(const std::string& target) {
     trie_node* curr = root;
     
@@ -141,4 +141,27 @@ void trie::destroy_trie(trie_node* curr) {
         }
     }
     delete(curr);
+}
+
+// will only send full word for incrementing
+// perhaps add prefix incrementing later if it helps
+trie_node* trie::find(const std::string& word) {
+    trie_node* curr = root;
+    for(unsigned int i = 0; i < word.length(); i++) {
+        char c = word[i];
+        int index = c - 'a';
+        if(curr->children[index] == nullptr) return nullptr;
+        curr = curr->children[index];
+    }
+    return curr;
+}
+
+void trie::increment_frequency(const std::string& word) {
+    trie_node* target = find(word);
+    if(target == nullptr) {
+        insert(word);
+    }
+    else {
+         target->frequency+=1;
+    }
 }
