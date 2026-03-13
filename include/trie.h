@@ -19,7 +19,7 @@ class trie {
     trie_node* root;
 public:
     trie(); // param names optional -- compiler doesn't care
-    void insert(const std::string&); // const means no editing string + & means no copying over string
+    void insert_word(const std::string&); // const means no editing string + & means no copying over string
     void delete_word(const std::string&);
     bool search(const std::string&);
     std::vector<std::pair<trie_node*, std::string>> words_with_prefix(const std::string&);

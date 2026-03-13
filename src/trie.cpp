@@ -17,7 +17,7 @@ trie::trie() {
 
 // may need normalization later on
 // currently assuming all lowercase chars.
-void trie::insert(const std::string& word) {
+void trie::insert_word(const std::string& word) {
     if(search(word)) {
         return; 
     }
@@ -164,7 +164,7 @@ trie_node* trie::find(const std::string& word) {
 void trie::increment_frequency(const std::string& word) {
     trie_node* target = find(word);
     if(target == nullptr) {
-        insert(word);
+        insert_word(word);
     }
     else {
          target->frequency+=1;

@@ -13,7 +13,7 @@
 // TRIE FUNCTIONS
 TEST(trie, insert_and_search) {
     trie* t = new trie();
-    t->insert("cat");
+    t->insert_word("cat");
 
     ASSERT_TRUE(t->search("cat"));
     ASSERT_FALSE(t->search("ca"));
@@ -23,7 +23,7 @@ TEST(trie, insert_and_search) {
 // DELETION
 TEST(trie, insert_and_delete_one_word) {
     trie* t = new trie();
-    t->insert("cat");
+    t->insert_word("cat");
 
     ASSERT_TRUE(t->search("cat"));
 
@@ -34,12 +34,12 @@ TEST(trie, insert_and_delete_one_word) {
 
 TEST(trie, insert_and_delete_related_words) {
     trie* t = new trie();
-    t->insert("cat");
-    t->insert("catastrophe");
-    t->insert("catatonic");
-    t->insert("catch");
-    t->insert("catharsis");
-    t->insert("cacophony");
+    t->insert_word("cat");
+    t->insert_word("catastrophe");
+    t->insert_word("catatonic");
+    t->insert_word("catch");
+    t->insert_word("catharsis");
+    t->insert_word("cacophony");
 
     ASSERT_TRUE(t->search("catch"));
 
@@ -57,7 +57,7 @@ TEST(trie, delete_in_empty_trie) {
 // SEARCH
 TEST(trie, search_for_word_not_in_trie) {
     trie* t = new trie();
-    t->insert("hello");
+    t->insert_word("hello");
     ASSERT_FALSE(t->search("hi"));
 }
 
@@ -65,10 +65,10 @@ TEST(trie, search_for_word_not_in_trie) {
 // TRIE FUNCTION
 TEST(trie, insert_and_search_many_words) {
     trie* t = new trie();
-    t->insert("the");
-    t->insert("quick");
-    t->insert("brown");
-    t->insert("fox");
+    t->insert_word("the");
+    t->insert_word("quick");
+    t->insert_word("brown");
+    t->insert_word("fox");
 
     ASSERT_TRUE(t->search("quick")); 
 }
@@ -90,12 +90,12 @@ TEST(trie, insert_and_search_many_words) {
 
 TEST(trie, words_with_prefix_basic) {
     trie* t = new trie();
-    t->insert("cat");
-    t->insert("catastrophe");
-    t->insert("catatonic");
-    t->insert("catch");
-    t->insert("catharsis");
-    t->insert("cacophony");
+    t->insert_word("cat");
+    t->insert_word("catastrophe");
+    t->insert_word("catatonic");
+    t->insert_word("catch");
+    t->insert_word("catharsis");
+    t->insert_word("cacophony");
 
     std::vector<std::pair<trie_node*, std::string>> prefixes_and_nodes = t->words_with_prefix("cat");
 
@@ -110,7 +110,7 @@ TEST(trie, words_with_prefix_basic) {
 
 TEST(trie, frequency_increment) {
     trie* t = new trie();
-    t->insert("cat");
+    t->insert_word("cat");
     trie_node* target = t->find("cat");
     if(target!=nullptr) {
         t->increment_frequency("cat");
@@ -120,12 +120,12 @@ TEST(trie, frequency_increment) {
 
 TEST(trie, top_k_prefix) {
     trie* t = new trie();
-    t->insert("cat");
-    t->insert("catastrophe");
-    t->insert("catatonic");
-    t->insert("catch");
-    t->insert("catharsis");
-    t->insert("cacophony");
+    t->insert_word("cat");
+    t->insert_word("catastrophe");
+    t->insert_word("catatonic");
+    t->insert_word("catch");
+    t->insert_word("catharsis");
+    t->insert_word("cacophony");
     t->increment_frequency("cat");
     t->increment_frequency("cat");
     t->increment_frequency("catch");

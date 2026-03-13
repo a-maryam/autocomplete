@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     trie* t = new trie();
     
     for(std::string s : tokens) {
-        t->insert(s);
+        t->insert_word(s);
     }
 
     /*std::vector<std::string> list = t->words_with_prefix("he");
