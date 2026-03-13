@@ -99,8 +99,9 @@ bool trie::search(const std::string& target) {
     return curr->terminal;
 }
 
-std::vector<std::string> trie::words_with_prefix(const std::string& prefix) {
-    std::vector<std::string> words = {};
+// rewrite to return trie_nodes
+std::vector<std::pair<trie_node*, std::string>> trie::words_with_prefix(const std::string& prefix) {
+    std::vector<std::pair<trie_node*, std::string>> words = {};
     trie_node* curr = root; 
     // we get down to the prefix and then we follow every path in the children, 
     // add whatever is terminal...until there are no more branches.
@@ -113,7 +114,7 @@ std::vector<std::string> trie::words_with_prefix(const std::string& prefix) {
 }
 
 // dfs
-std::vector<std::string> trie::find_all_words(trie_node* root, std::vector<std::string>& words, const std::string& prefix) {
+std::vector<std::pair<trie_node*, std::string>> trie::find_all_words(trie_node* root, std::vector<std::pair<trie_node*, std::string>>& words, const std::string& prefix) {
     std::stack<std::pair<trie_node*, std::string>> nodes; 
     nodes.push({root, ""});
     std::string temp;
@@ -123,7 +124,7 @@ std::vector<std::string> trie::find_all_words(trie_node* root, std::vector<std::
         auto [curr, temp] = nodes.top();
         nodes.pop();
         if(curr->terminal) {
-            words.push_back(prefix + temp); // original mistake was resetting temp here but it is the path
+            words.push_back({curr, prefix + temp}); // original mistake was resetting temp here but it is the path
         }
         for(int i = 0; i < 26; i++) {
             if(curr->children[i]!=nullptr) {
@@ -169,5 +170,12 @@ void trie::increment_frequency(const std::string& word) {
     }
 }
 
+/*std::vector<std::string> trie::top_prefixes_by_rank(const std::string& string) {
+    words_with_prefix(string);
+}*/
+
 // flow of api
-// get 
+// incoming letter requests 
+// serve up prefix suggestions, say top 10
+// complete word, increment or insert. 
+

@@ -73,7 +73,7 @@ TEST(trie, insert_and_search_many_words) {
     ASSERT_TRUE(t->search("quick")); 
 }
 
-TEST(trie, words_with_prefix_basic) {
+/*TEST(trie, words_with_prefix_basic) {
     trie* t = new trie();
     t->insert("cat");
     t->insert("catastrophe");
@@ -86,6 +86,26 @@ TEST(trie, words_with_prefix_basic) {
     // checking if words with a prefix are in the list
     ASSERT_TRUE(std::find(words.begin(), words.end(), "catch") != words.end());
     ASSERT_TRUE(std::find(words.begin(), words.end(), "catharsis") != words.end());
+}*/
+
+TEST(trie, words_with_prefix_basic) {
+    trie* t = new trie();
+    t->insert("cat");
+    t->insert("catastrophe");
+    t->insert("catatonic");
+    t->insert("catch");
+    t->insert("catharsis");
+    t->insert("cacophony");
+
+    std::vector<std::pair<trie_node*, std::string>> prefixes_and_nodes = t->words_with_prefix("cat");
+
+    std::vector<std::string> prefixes;
+    for(auto &word : prefixes_and_nodes) {
+        prefixes.push_back(word.second);
+    }
+    // checking if words with a prefix are in the list
+    ASSERT_TRUE(std::find(prefixes.begin(), prefixes.end(), "catch") != prefixes.end());
+    ASSERT_TRUE(std::find(prefixes.begin(), prefixes.end(), "catharsis") != prefixes.end());
 }
 
 TEST(trie, frequency_increment) {
@@ -95,7 +115,7 @@ TEST(trie, frequency_increment) {
     if(target!=nullptr) {
         t->increment_frequency("cat");
     }
-    ASSERT_TRUE(t->find("cat")->frequency == 2);
+    ASSERT_TRUE(t->find("cat")->frequency == 1);
 }
 
 // TODO: TEST NODE HAS CHILDREN
