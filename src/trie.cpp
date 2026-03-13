@@ -17,7 +17,10 @@ trie::trie() {
 // may need normalization later on
 // currently assuming all lowercase chars.
 void trie::insert(const std::string& word) {
-    if(search(word)) return; // word already exists
+    if(search(word)) {
+        return; 
+    }
+
     trie_node* temp = root;
     unsigned int i = 0; 
 
@@ -165,3 +168,6 @@ void trie::increment_frequency(const std::string& word) {
          target->frequency+=1;
     }
 }
+
+// flow of api
+// get 

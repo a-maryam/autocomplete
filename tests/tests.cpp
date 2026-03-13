@@ -88,6 +88,16 @@ TEST(trie, words_with_prefix_basic) {
     ASSERT_TRUE(std::find(words.begin(), words.end(), "catharsis") != words.end());
 }
 
+TEST(trie, frequency_increment) {
+    trie* t = new trie();
+    t->insert("cat");
+    trie_node* target = t->find("cat");
+    if(target!=nullptr) {
+        t->increment_frequency("cat");
+    }
+    ASSERT_TRUE(t->find("cat")->frequency == 2);
+}
+
 // TODO: TEST NODE HAS CHILDREN
 // TODO: TEST TRIE INSTANSTIATION
 // TODO: TEST READ FILE
