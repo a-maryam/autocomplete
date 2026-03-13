@@ -29,7 +29,7 @@ public:
     bool node_has_children(trie_node* t);
     void increment_frequency(const std::string& word);
     trie_node* find(const std::string& word);
-    std::vector<std::string> top_prefixes_by_rank(const std::string& string);
+    std::vector<std::string> top_prefixes_by_rank(const std::string&);
 
 private:
     trie_node* delete_word(trie_node* t, const std::string&, unsigned int); 

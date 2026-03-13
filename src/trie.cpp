@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <algorithm> 
 
 trie_node::trie_node() : data(0), terminal(false) {
     for(int i = 0; i < 26; i++) {
@@ -170,9 +171,21 @@ void trie::increment_frequency(const std::string& word) {
     }
 }
 
-/*std::vector<std::string> trie::top_prefixes_by_rank(const std::string& string) {
-    words_with_prefix(string);
-}*/
+// rewrite for maxheap later
+// doing top ten
+std::vector<std::string> trie::top_prefixes_by_rank(const std::string& prefix) {
+    std::vector<std::pair<trie_node*, std::string>> prefixes = words_with_prefix(prefix);
+    std::sort(prefixes.begin(), prefixes.end(), [](auto& a, auto& b) {
+        return a.first->frequency > b.first->frequency;
+    });
+
+    std::vector<std::string> top_prefixes;
+    int k = 10;
+    for(unsigned int i = 0; i < k && i < prefixes.size(); i++) {
+        top_prefixes.push_back(prefixes[i].second);
+    }
+    return top_prefixes;
+}
 
 // flow of api
 // incoming letter requests 

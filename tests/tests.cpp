@@ -100,8 +100,8 @@ TEST(trie, words_with_prefix_basic) {
     std::vector<std::pair<trie_node*, std::string>> prefixes_and_nodes = t->words_with_prefix("cat");
 
     std::vector<std::string> prefixes;
-    for(auto &word : prefixes_and_nodes) {
-        prefixes.push_back(word.second);
+    for(auto &data : prefixes_and_nodes) {
+        prefixes.push_back(data.second);
     }
     // checking if words with a prefix are in the list
     ASSERT_TRUE(std::find(prefixes.begin(), prefixes.end(), "catch") != prefixes.end());
@@ -116,6 +116,22 @@ TEST(trie, frequency_increment) {
         t->increment_frequency("cat");
     }
     ASSERT_TRUE(t->find("cat")->frequency == 1);
+}
+
+TEST(trie, top_k_prefix) {
+    trie* t = new trie();
+    t->insert("cat");
+    t->insert("catastrophe");
+    t->insert("catatonic");
+    t->insert("catch");
+    t->insert("catharsis");
+    t->insert("cacophony");
+    t->increment_frequency("cat");
+    t->increment_frequency("cat");
+    t->increment_frequency("catch");
+    std::vector<std::string> top_pref = t->top_prefixes_by_rank("ca");
+    ASSERT_TRUE(top_pref[0] == "cat");
+    ASSERT_TRUE(top_pref[1] == "catch");
 }
 
 // TODO: TEST NODE HAS CHILDREN
