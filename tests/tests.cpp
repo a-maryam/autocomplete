@@ -129,9 +129,9 @@ TEST(trie, top_k_prefix) {
     t->increment_frequency("cat");
     t->increment_frequency("cat");
     t->increment_frequency("catch");
-    std::vector<std::string> top_pref = t->top_prefixes_by_rank("ca");
-    ASSERT_TRUE(top_pref[0] == "cat");
-    ASSERT_TRUE(top_pref[1] == "catch");
+    std::vector<std::string> words_w_pref = t->top_words_with_prefix("ca");
+    ASSERT_TRUE(words_w_pref[0] == "cat");
+    ASSERT_TRUE(words_w_pref[1] == "catch");
 }
 
 // TODO: TEST NODE HAS CHILDREN

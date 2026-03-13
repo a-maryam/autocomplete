@@ -173,18 +173,18 @@ void trie::increment_frequency(const std::string& word) {
 
 // rewrite for maxheap later
 // doing top ten
-std::vector<std::string> trie::top_prefixes_by_rank(const std::string& prefix) {
-    std::vector<std::pair<trie_node*, std::string>> prefixes = words_with_prefix(prefix);
-    std::sort(prefixes.begin(), prefixes.end(), [](auto& a, auto& b) {
+std::vector<std::string> trie::top_words_with_prefix(const std::string& prefix) {
+    std::vector<std::pair<trie_node*, std::string>> words_starting_w_pref = words_with_prefix(prefix);
+    std::sort(words_starting_w_pref.begin(), words_starting_w_pref.end(), [](auto& a, auto& b) {
         return a.first->frequency > b.first->frequency;
     });
 
-    std::vector<std::string> top_prefixes;
+    std::vector<std::string> top_words;
     int k = 10;
-    for(unsigned int i = 0; i < k && i < prefixes.size(); i++) {
-        top_prefixes.push_back(prefixes[i].second);
+    for(unsigned int i = 0; i < k && i < words_starting_w_pref.size(); i++) {
+        top_words.push_back(words_starting_w_pref[i].second);
     }
-    return top_prefixes;
+    return top_words;
 }
 
 // flow of api
