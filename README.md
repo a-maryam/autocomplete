@@ -15,6 +15,9 @@
 - Search/Autocomplete API
 - load in words, ranking, cache, api layer
 
+## Convention choices
+- I like the look of lowercase class names, and I like underscores for naming over pascal case. I have remained consistent across my project. 
+
 ## Notes for future me 
 - don't have trailing spaces in makefiles 
 - using namespace is bad practice 
