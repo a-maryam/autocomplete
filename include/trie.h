@@ -1,6 +1,7 @@
 #pragma once 
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class trie_node {
     static const int ALPHABET_SIZE = 26;

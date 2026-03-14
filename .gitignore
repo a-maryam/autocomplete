@@ -57,9 +57,22 @@ build
 .vscode
 *.user
 .vs/
+x64/
+Debug/
+Release/
+bin/
+obj/
 
 # may need for cli
 publish/
 dist/
 nupkg/
 obj/
+
+# Visual Studio temporary files
+*.log
+*.suo
+*.user
+*.ncb
+*.aps
+*.opendb

@@ -15,6 +15,9 @@
 - Search/Autocomplete API
 - load in words, ranking, cache, api layer
 
+## How this project grew
+- First I thought tries and autocomplete were interesting. And I also like C++, and then I wanted to use C#/.NET. So, I had to use C++/CLI to bridge C++ into .NET. It's a pretty old piece of tech that still works.
+
 ## Convention choices
 - I like the look of lowercase class names, and I like underscores for naming over pascal case. I have remained consistent across my project. 
 
