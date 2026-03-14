@@ -11,7 +11,8 @@ class Program
         autocomplete.InsertWord("application");
 
         autocomplete.SelectWord("apple");
-        autocomplete.SelectWord("apple");
+        autocomplete.SelectWord("application");
+        autocomplete.SelectWord("application");
         autocomplete.SelectWord("application");
 
         var results = autocomplete.TopWords("app");

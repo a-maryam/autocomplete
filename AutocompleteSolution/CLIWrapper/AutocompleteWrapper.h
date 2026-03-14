@@ -20,4 +20,5 @@ private:
         bool Search(String^ word);
         void SelectWord(String^ word);
         array<String^>^ TopWords(String^ prefix);
+        void LoadLexicon(String^ path);
     };

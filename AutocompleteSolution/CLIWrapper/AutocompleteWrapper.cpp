@@ -51,3 +51,8 @@ array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
     }
     return result;
 }
+
+void LoadLexicon(String^ path) {
+
+}
+// need to handle case agnosticism
