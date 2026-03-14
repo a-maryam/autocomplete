@@ -14,6 +14,7 @@ public class AutocompleteController : ControllerBase
     [HttpGet]
     public string[] Get(string prefix)
     {
+        _wrapper.SelectWord(prefix);
         return _wrapper.TopWords(prefix); 
     }
 }

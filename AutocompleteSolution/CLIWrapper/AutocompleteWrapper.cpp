@@ -5,6 +5,7 @@ using namespace msclr::interop;
 
 AutocompleteWrapper::AutocompleteWrapper() {
     nativeTrie = new trie();
+    //_cache = gcnew Dictionary<String^, array<String^>^>();
 }
 
 AutocompleteWrapper::~AutocompleteWrapper() {
@@ -44,8 +45,16 @@ void AutocompleteWrapper::LoadLexicon(String^ path) {
     std::string nativePath = msclr::interop::marshal_as<std::string>(path);
     nativeTrie->load_lexicon(nativePath);
 }
+
 // return .NET Array
 array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
+    if (String::IsNullOrEmpty(prefix)) return gcnew array<String^>(0);
+    prefix = prefix->ToLower(); // normalize
+
+	// return from cache if saved, only top 10 so should not take up too much memory
+    //array<String^>^ cached;
+    //if (_cache->TryGetValue(prefix, cached)) return cached;
+
     std::string nativePrefix = SystemStringToStdString(prefix);
     auto words = nativeTrie->top_words_with_prefix(nativePrefix);
 
@@ -53,8 +62,6 @@ array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
     for (size_t i = 0; i < words.size(); i++) {
         result[i] = gcnew String(words[i].c_str());
     }
+	//_cache[prefix] = result; // cache the result
     return result;
 }
-
-
-// need to handle case agnosticism
