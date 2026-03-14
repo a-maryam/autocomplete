@@ -40,6 +40,10 @@ void AutocompleteWrapper::SelectWord(String^ word) {
     nativeTrie->increment_frequency(SystemStringToStdString(word));
 }
 
+void AutocompleteWrapper::LoadLexicon(String^ path) {
+    std::string nativePath = msclr::interop::marshal_as<std::string>(path);
+    nativeTrie->load_lexicon(nativePath);
+}
 // return .NET Array
 array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
     std::string nativePrefix = SystemStringToStdString(prefix);
@@ -52,7 +56,5 @@ array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
     return result;
 }
 
-void LoadLexicon(String^ path) {
 
-}
 // need to handle case agnosticism

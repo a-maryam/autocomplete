@@ -4,15 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 public class AutocompleteController : ControllerBase
 {
     private readonly AutocompleteWrapper _wrapper;
-
-    public AutocompleteController()
+    
+    // Dependency injection
+    public AutocompleteController(AutocompleteWrapper wrapper)
     {
-        _wrapper = new AutocompleteWrapper();
+        _wrapper = wrapper;
     }
 
     [HttpGet]
     public string[] Get(string prefix)
     {
-        return _wrapper.TopWords(prefix);
+        return _wrapper.TopWords(prefix); 
     }
 }

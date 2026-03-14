@@ -31,6 +31,7 @@ public:
     void increment_frequency(const std::string& word);
     trie_node* find(const std::string& word);
     std::vector<std::string> top_words_with_prefix(const std::string&);
+    void load_lexicon(const std::string&);
 
 private:
     trie_node* delete_word(trie_node* t, const std::string&, unsigned int); 

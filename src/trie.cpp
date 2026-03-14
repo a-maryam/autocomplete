@@ -1,5 +1,6 @@
 // trie.cpp
 #include "../include/trie.h"
+#include "../include/reader.h"
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -187,8 +188,11 @@ std::vector<std::string> trie::top_words_with_prefix(const std::string& prefix) 
     return top_words;
 }
 
-// flow of api
-// incoming letter requests 
-// serve up prefix suggestions, say top 10
-// complete word, increment or insert. 
+void trie::load_lexicon(const std::string& input_file) {
+    std::vector<std::string> tokens = read_file(input_file);
+    
+    for(std::string s : tokens) {
+        insert_word(s);
+    }
+}
 

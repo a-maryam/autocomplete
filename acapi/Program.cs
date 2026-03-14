@@ -3,8 +3,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+//builder.Services.AddSingleton<AutocompleteWrapper>();
+builder.Services.AddSingleton<AutocompleteWrapper>(serviceProvider =>
+{
+    var wrapper = new AutocompleteWrapper();
+    wrapper.LoadLexicon("Data/google-10000-english.txt"); // load once
+    return wrapper;
+});
+
 builder.Services.AddControllers();
-builder.Services.AddSingleton<AutocompleteWrapper>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
