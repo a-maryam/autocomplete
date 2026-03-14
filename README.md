@@ -5,6 +5,7 @@
 - Wrote basic test suite for trie functions
 - Using Google Test / Google C++ Testing Framework for tests 
 - Using Cmake for the first time (can still compile with makefile but have not edited it to be compatible with gtest yet)
+- Wrote C++/CLI Wrapper
 - dotnet web api
 
 ## Design considerations
@@ -19,8 +20,4 @@
 - First I thought tries and autocomplete were interesting. And I also like C++, and then I wanted to use C#/.NET. So, I had to use C++/CLI to bridge C++ into .NET. It's a pretty old piece of tech that still works.
 
 ## Convention choices
-- I like the look of lowercase class names, and I like underscores for naming over pascal case. I have remained consistent across my project. 
-
-## Notes for future me 
-- don't have trailing spaces in makefiles 
-- using namespace is bad practice 
+- I like the look of lowercase class names, and I like underscores for naming over pascal case. I have remained consistent across my project.

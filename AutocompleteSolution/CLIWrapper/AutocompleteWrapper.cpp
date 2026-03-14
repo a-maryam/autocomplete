@@ -18,6 +18,7 @@ AutocompleteWrapper::!AutocompleteWrapper() {
     }
 }
 
+// Conversions between managed and native strings
 std::string AutocompleteWrapper::SystemStringToStdString(String^ str) {
     marshal_context context;
     return context.marshal_as<std::string>(str);
@@ -25,7 +26,7 @@ std::string AutocompleteWrapper::SystemStringToStdString(String^ str) {
 
 String^ AutocompleteWrapper::StdStringToSystemString(const std::string& str) {
     return gcnew String(str.c_str());
-}
+} // end conversion functions
 
 void AutocompleteWrapper::InsertWord(String^ word) {
     nativeTrie->insert_word(SystemStringToStdString(word));
@@ -39,6 +40,7 @@ void AutocompleteWrapper::SelectWord(String^ word) {
     nativeTrie->increment_frequency(SystemStringToStdString(word));
 }
 
+// return .NET Array
 array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
     std::string nativePrefix = SystemStringToStdString(prefix);
     auto words = nativeTrie->top_words_with_prefix(nativePrefix);

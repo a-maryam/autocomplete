@@ -5,7 +5,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="../acapi/acapi.csproj" />
-  <Project Path="../TrieCore/TrieCore/TrieCore.vcxproj" Id="3191b843-bb25-487d-81bc-aa5fdc605678" />
   <Project Path="CLIWrapper/CLIWrapper.vcxproj" />
   <Project Path="TrieLib/TrieLib.vcxproj" Id="e07e6bba-2e72-4ead-a915-94531e5cc45d" />
   <Project Path="TrieTestApp/TrieTestApp.csproj" Id="b1672946-3c58-41dd-b0d0-145634c29f25" />
