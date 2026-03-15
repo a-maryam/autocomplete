@@ -22,9 +22,10 @@ AutocompleteWrapper::!AutocompleteWrapper() {
 // Conversions between managed and native strings
 std::string AutocompleteWrapper::SystemStringToStdString(String^ str) {
     marshal_context context;
-    return context.marshal_as<std::string>(str);
+    return context.marshal_as<std::string>(str); // converts data between native and managed types
 }
 
+// String^ is a managed string object / GC handles it
 String^ AutocompleteWrapper::StdStringToSystemString(const std::string& str) {
     return gcnew String(str.c_str());
 } // end conversion functions
@@ -48,6 +49,7 @@ void AutocompleteWrapper::LoadLexicon(String^ path) {
 
 // return .NET Array
 array<String^>^ AutocompleteWrapper::TopWords(String^ prefix) {
+    // gcnew allocates memory on heap 
     if (String::IsNullOrEmpty(prefix)) return gcnew array<String^>(0);
     prefix = prefix->ToLower(); // normalize
 

@@ -13,6 +13,17 @@ builder.Services.AddSingleton<AutocompleteWrapper>(serviceProvider =>
 });
 
 builder.Services.AddControllers();
+
+// for React
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowViteDev",
+        policy => policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+// for react /vite
+app.UseCors("AllowViteDev");
 app.UseHttpsRedirection();
 app.MapControllers();
 
