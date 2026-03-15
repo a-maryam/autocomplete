@@ -1,5 +1,9 @@
 # Autocomplete backend 
-This project is a React + .NET app that is C++ under the hood. I used C++/CLI to expose the trie data structure which facilitates autocomplete. I did not host it to keep down cloud costs because there are basically no free/low-paid options for .NET backends and can't containerize with Docker (don't have Windows Server). I'm going to add a demo video or images soon though.
+This project is a React + .NET app that is C++ under the hood. I used C++/CLI to expose the trie data structure which facilitates autocomplete. I did not host it to keep down cloud costs because there are basically no free/low-paid options for .NET backends and can't containerize with Docker (don't have Windows Server). 
+
+## Demo 
+![Shows working autocomplete on user input](demo_images/api_demo_3_15_26.png)
+Work in progress.
 
 ## Features
 - trie with insert, delete, search, prefix search

@@ -6,4 +6,10 @@
 ## TODOs
 TODO: 
 - prefixes are being incremented and served -- which we do not want.  now I'm going to have to choose functionality. Originally it's supposed to be autocomplete, so the idea would be to suggest words more than suggesting prefixes (actually that should be out of scope because that's a different thing). So, should only increment terminal ranking. 
-- Also, maybe I should try to see if there's a way we can check if something is a real word. Technically, someone could spam gibberish and the whole trie would be messed up if we had persistence (which I think I'm going to add).
+=> Add word after user enters/whitespace. What about multiple words? should add to trie after every space
+- Also, maybe I should try to see if there's a way we can check if something is a real word. Technically, someone could spam gibberish and the whole trie would be messed up if we had persistence (which I think I'm going to add). I don't think real search cares if something is a real word, if everyone is searching gibberish it will be in the rankings.
+
+- Project:
+Native C++ Trie => C++/CLI Wrapper => .NET backend API => React Frontend
+
+
