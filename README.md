@@ -1,5 +1,5 @@
 # Autocomplete backend 
-This project is a React + .NET app that is C++ under the hood. I used C++/CLI to expose the trie data structure which facilitates autocomplete. I did not host it to keep down cloud costs because there are basically no free/low-paid options for .NET backends and can't containerize with Docker (don't have Windows Server). 
+This project is a React + .NET app that is C++ under the hood. I used C++/CLI to expose the trie data structure which facilitates autocomplete. I did not host it to keep down cloud costs (free/low-cost backend hosting for .NET/Windows-only is limited).
 
 ## Demo 
 ![Shows working autocomplete on user input](demo_images/api_demo_3_15_26.png)
@@ -16,7 +16,7 @@ Work in progress.
 ## Design considerations
 ### Frequency ranking
 - Have the option of adding frequency to nodes or having a hashmap with word frequencies. Adding to nodes saves memory.
-- No caching, because then I lose the word ranking updates.
+- Write-through caching? 
 
 ## Idea
 - Search/Autocomplete API
@@ -24,6 +24,9 @@ Work in progress.
 
 ## How this project grew
 - First I thought tries and autocomplete were interesting. And I also like C++, and then I wanted to use C#/.NET. So, I had to use C++/CLI to bridge C++ into .NET. It's a pretty old piece of tech that still works.
+
+## Lessons 
+- C++/CLI is not system-agnostic, and P/Invoke can port over to Linux. Would have been the better initial choice.
 
 ## Convention choices
 - I like the look of lowercase class names, and I like underscores for naming over pascal case. I have remained consistent across my project.
